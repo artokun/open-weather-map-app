@@ -30,10 +30,9 @@ angular.module('OWMApp', ['ngRoute'])
       })//Where do I put this??*/
       .otherwise('/error');
   }])
-  .controller('HomeController', function ($scope) {
+  .controller('HomeController', function () {
     this.welcomeMessage = "Welcome Home";
   })
-  .controller('CityController', function ($scope, city) {
-    $scope.city = city;
-
+  .controller('CityController', function (city) {
+    this.city = city;
   });
