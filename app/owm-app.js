@@ -1,6 +1,8 @@
+/*global angular */
 angular.module('OWMApp', ['ngRoute'])
   .value('owmCities', ['New York', 'Dallas', 'Chicago'])
   .config(['$routeProvider', function ($routeProvider) {
+    "use strict";
     $routeProvider
       .when('/', {
         templateUrl: 'home.html',
@@ -12,7 +14,7 @@ angular.module('OWMApp', ['ngRoute'])
         resolve: {
           city: function (owmCities, $route, $location) {
             var city = $route.current.params.city;
-            if (owmCities.indexOf(city) == -1) {
+            if (owmCities.indexOf(city) === -1) {
               $location.path('/error');
               return;
             }
@@ -31,8 +33,10 @@ angular.module('OWMApp', ['ngRoute'])
       .otherwise('/error');
   }])
   .controller('HomeController', function () {
+    "use strict";
     this.welcomeMessage = "Welcome Home";
   })
   .controller('CityController', function (city) {
+    "use strict";
     this.city = city;
   });
