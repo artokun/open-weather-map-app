@@ -25,13 +25,14 @@ angular.module('OWMApp', ['ngRoute'])
       .when('/error', {
         template: '<p>Error - Page Not Found</p>'
       })
-      /*.run(function ($rootScope, $location) {
-        $rootScope.$on('$routeChangeError', function () {
-          $location.path('/error');
-        });
-      })//Where do I put this??*/
       .otherwise('/error');
   }])
+  .run(function ($rootScope, $location) {
+    "use strict";
+    $rootScope.$on('$routeChangeError', function () {
+      $location.path('/error');
+    });//not needed with .otherwise but good to know for later
+  })
   .controller('HomeController', function () {
     "use strict";
     this.welcomeMessage = "Welcome Home";
