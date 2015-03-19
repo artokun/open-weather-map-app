@@ -4,13 +4,22 @@
   <meta charset="UTF-8">
   <title>Open Weather Map App</title>
   <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../app/own-app.css">
 </head>
-<body class="container">
-  <section class="row" ng-view></section>
+<body ng-class="{loading: isLoading}" class="container">
+  <a href="#/cities/New%20York">New York</a>
+  <a href="#/cities/Dallas">Dallas</a>
+  <a href="#/cities/Chicago">Chicago</a>
+  
+  <div class="animate-view-container">
+    <section class="row" ng-view class="animate-view"></section>
+  </div>
+  
   <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../bower_components/angular/angular.js" ></script>
   <script type="text/javascript" src="../bower_components/angular-route/angular-route.js"></script>
+  <script type="text/javascript" src="../bower_components/angular-animate/angular-animate.js"></script>
   <script type="text/javascript" src="owm-app.js"></script>
 </body>
 </html>
