@@ -1,8 +1,8 @@
 /*global angular */
-angular.module('OWMApp', ['ngRoute'])
-  .value('owmCities', ['New York', 'Dallas', 'Chicago'])
+angular.module('OWMApp', ['ngRoute', 'ngAnimate'])
+  .value('owmCities',
+    ['New York', 'Dallas', 'Chicago'])
   .config(['$routeProvider', function ($routeProvider) {
-    "use strict";
     $routeProvider
       .when('/', {
         templateUrl: 'home.html',
@@ -25,13 +25,22 @@ angular.module('OWMApp', ['ngRoute'])
       .when('/error', {
         template: '<p>Error - Page Not Found</p>'
       })
-      .otherwise('/error');
+      .otherwise({
+        redirectTo : '/error'
+      });
   }])
-  .run(function ($rootScope, $location) {
-    "use strict";
+  .run(function ($rootScope, $location, $timeout) {
     $rootScope.$on('$routeChangeError', function () {
-      $location.path('/error');
-    });//not needed with .otherwise but good to know for later
+      $location.path("/error");
+    });
+    $rootScope.$on('$routeChangeStart', function () {
+      $rootScope.isLoading = true;
+    });
+    $rootScope.$on('$routeChangeSuccess', function () {
+      $timeout(function () {
+        $rootScope.isLoading = false;
+      }, 1000);
+    });
   })
   .controller('HomeController', function () {
     "use strict";
